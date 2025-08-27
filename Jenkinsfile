@@ -23,19 +23,20 @@ pipeline {
             }
         }
 
-        stage('Stop old container') {
-            steps {
-                script {
-                    // Stop container running on 8682 if exists
-                    bat '''
-                    for /f "tokens=*" %%i in ('docker ps -q --filter "publish=8682"') do (
-                        docker stop %%i
-                        docker rm %%i
-                    )
-                    '''
-                }
-            }
+stage('Stop old container') {
+    steps {
+        script {
+            bat """
+            for /f "tokens=*" %%i in ('docker ps -q --filter "publish=8682/tcp"') do (
+                docker stop %%i
+                docker rm %%i
+            )
+            exit 0
+            """
         }
+    }
+}
+
 
         stage('Run docker container') {
             steps {
