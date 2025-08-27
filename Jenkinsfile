@@ -26,9 +26,9 @@ pipeline {
         stage('Stop old container') {
             steps {
                 script {
-                    // Stop container running on 8282 if exists
+                    // Stop container running on 9090 if exists
                     bat '''
-                    for /f "tokens=*" %%i in ('docker ps -q --filter "publish=8282"') do (
+                    for /f "tokens=*" %%i in ('docker ps -q --filter "publish=9090"') do (
                         docker stop %%i
                         docker rm %%i
                     )
@@ -39,7 +39,7 @@ pipeline {
 
         stage('Run docker container') {
             steps {
-                bat 'docker run -d -p 8282:8282 --name jenkins-app sumitdockerrepo/docker-jenkins-pipeline'
+                bat 'docker run -d -p 9090:9090 --name jenkins-app sumitdockerrepo/docker-jenkins-pipeline'
             }
         }
 
