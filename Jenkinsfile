@@ -40,7 +40,7 @@ stage('Stop old container') {
 
         stage('Run docker container') {
             steps {
-                bat 'docker run -d -p 8682:8682 --name jenkins-app sumitdockerrepo/docker-jenkins-pipeline'
+                bat 'docker run -d -p 8682:8682 --name jenkins-app2 sumitdockerrepo/docker-jenkins-pipeline'
             }
         }
 
