@@ -43,17 +43,16 @@ pipeline {
             }
         }
 
-        stage('Push to DockerHub') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'sumitdockerrepo', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    bat """
-                    docker login -u %DOCKER_USER% -p %DOCKER_PASS%
-                    docker tag sumitdockerrepo/docker-jenkins-pipeline %DOCKER_USER%/docker-jenkins-pipeline:latest
-                    docker push %DOCKER_USER%/docker-jenkins-pipeline:latest
-                    docker logout
-                    """
-                }
-            }
-        }
+      stage('Push to DockerHub') {
+    steps {
+        bat """
+        docker login -u sumitdockerrepo -p Linkun92!1015
+        docker tag sumitdockerrepo/docker-jenkins-pipeline sumitdockerrepo/docker-jenkins-pipeline:latest
+        docker push sumitdockerrepo/docker-jenkins-pipeline:latest
+        docker logout
+        """
+    }
+}
+ 
     }
 }
